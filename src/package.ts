@@ -2029,7 +2029,7 @@ export async function printAndValidatePackagedFiles(files: IFile[], cwd: string,
 	// the package does not include at least one file for each include pattern
 	else if (manifest.files !== undefined && manifest.files.length > 0 && !options.allowUnusedFilesPattern) {
 		const localPaths = (files.filter(f => !isInMemoryFile(f)) as ILocalFile[]).map(f => util.normalize(f.localPath));
-		const filesIncludePatterns = manifest.files.map(includePattern => util.normalize(path.join(cwd, includePattern)));
+		const filesIncludePatterns = manifest.files.filter(includePattern => includePattern[0] !== '!').map(includePattern => util.normalize(path.join(cwd, includePattern)));
 
 		const unusedIncludePatterns = filesIncludePatterns.filter(includePattern => {
 			// Check if the pattern provided by the user matches any file in the package
