@@ -4,6 +4,12 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "combine branches",
+			"type": "shell",
+			"command": "./build/combine.sh fix-1066 symlink-fix",
+			"problemMatcher": [],
+		},
+		{
 			"type": "npm",
 			"script": "watch:build",
 			"problemMatcher": ["$tsc-watch"],
